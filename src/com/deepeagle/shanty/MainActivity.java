@@ -6,21 +6,29 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import java.io.IOException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import com.deepeagle.shanty.R;
 
 import com.deepeagle.shanty.trustgraph.Node;
 import com.deepeagle.shanty.views.NodeView;
+import com.deepeagle.shanty.views.NodeViewAdapter;
 
 
 public class MainActivity extends Activity {
 
     private final static String TAG = "MainActivity";
+    
+    //*
+    //*       Important variables
+    //*
+    private ArrayList<Node> nodeList = new ArrayList<Node>();
 
 
     @Override
@@ -42,7 +50,8 @@ public class MainActivity extends Activity {
         String[] thePMs = {"one", "two", "three", "four", "five"};
         try {
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-            keyGen.initialize(2048);
+            //Keysize will normally be 2048, 1024 for quicker compiling at early stages
+            keyGen.initialize(1024);
 
             Log.d(TAG, "Generating keys");
             decryptionPair = keyGen.generateKeyPair();
@@ -55,7 +64,7 @@ public class MainActivity extends Activity {
 
 
 
-        Node paul = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),"Hello World", thePMs);
+
 
 
 
@@ -63,16 +72,28 @@ public class MainActivity extends Activity {
         //Creation of the lame test nodes
         // *********************************************************
 
+        Node paul = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),"Hello World", thePMs);
+        Node pat = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),"Fuck da police", thePMs);
+        Node pablo = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),"Selling mad crack", thePMs);
+        nodeList.add(paul);
+        nodeList.add(pat);
+        nodeList.add(pablo);
+
+        
         Log.d(TAG, "Adding new view to centerNodes");
-        LinearLayout centerNodes = (LinearLayout)findViewById(R.id.centerBarNodesLayout);
-        centerNodes.addView(new NodeView(this,paul));
+        NodeViewAdapter nodeViewAdapter = new NodeViewAdapter(this,nodeList);
+        
+        ListView centerNodes = (ListView)findViewById(R.id.nodeListView);
+        centerNodes.setAdapter(nodeViewAdapter);
+        
+        
+        
         Log.d(TAG, "Finished adding new view to centerNodes");
 
         int cC = centerNodes.getChildCount();
         Log.d(TAG, "Listing children...");
 
         for (int i = 0; i < cC; i++){
-
             Log.d("MainActivity", "Child number " + i + "'s visibility is " + centerNodes.getChildAt(i).getVisibility());
         }
     }

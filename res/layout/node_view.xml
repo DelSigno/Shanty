@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
-        android:textColor="@color/black_overlay"
+        android:textColor="#66FF66"
         android:textSize="30sp" >
 
     </TextView>
@@ -20,7 +20,7 @@
          android:layout_height="wrap_content"
          android:layout_below="@+id/userID"
          android:paddingLeft="5dp"
-         android:textColor="@color/black_overlay"
+         android:textColor="#66FF66"
          android:textSize="12sp" >
 
     </TextView>
