@@ -29,6 +29,4 @@ public class NodeView extends ListView{
         Log.d("NodeView", "UserID: " + userIDView.getText());
 
     }
-
-
 }

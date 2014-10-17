@@ -12,7 +12,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 
-import shanty.deepeagle.com.shanty.R;
+import com.deepeagle.shanty.R;
 
 import com.deepeagle.shanty.trustgraph.Node;
 import com.deepeagle.shanty.views.NodeView;
@@ -32,19 +32,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d(TAG, "Adding new view to centerNtestodes");
-
-
-
-
         //**********************************************************
         //Creation of the lame test nodes
         // *********************************************************
 
         KeyPair decryptionPair;
         KeyPair encryptionPair;
-
-
 
         String[] thePMs = {"one", "two", "three", "four", "five"};
         try {
@@ -76,7 +69,6 @@ public class MainActivity extends Activity {
         Log.d(TAG, "Finished adding new view to centerNodes");
 
         int cC = centerNodes.getChildCount();
-        Log.d(TAG, "cC found");
         Log.d(TAG, "Listing children...");
 
         for (int i = 0; i < cC; i++){
