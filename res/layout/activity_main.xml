@@ -9,87 +9,91 @@
     tools:context=".MainActivity" >
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:orientation="vertical" >
 
         <HorizontalScrollView
+            android:id="@+id/topMenuBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/topMenuBar"
-            android:layout_gravity="center_horizontal" >
-
+            android:layout_gravity="center_horizontal" 
+            android:layout_weight="1">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
 
                 <Button
+                    android:id="@+id/topBarUserOutgoing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Outgoing"
-                    android:id="@+id/topBarUserOutgoing" />
+                    android:text="Outgoing" />
 
                 <Button
+                    android:id="@+id/topBarUserFriends"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Friends"
-                    android:id="@+id/topBarUserFriends" />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Private Messages"
-                    android:id="@+id/topBarUserIncomingPMs" />
+                    android:text="Friends" />
 
                 <Button
+                    android:id="@+id/topBarUserIncomingPMs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Settings"
-                    android:id="@+id/topBarUserSetting" />
+                    android:text="Private Messages" />
+
+                <Button
+                    android:id="@+id/topBarUserSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Settings" />
             </LinearLayout>
         </HorizontalScrollView>
 
         <ScrollView
+            android:id="@+id/centerBarNodes"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/centerBarNodes" >
+            android:layout_height="fill_parent"
+            android:layout_weight="8" >
 
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/centerBarNodesLayout"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id = "@+id/centerBarNodesLayout">
+                android:layout_height="196dp"
+                android:layout_gravity="top|center"
+                android:orientation="vertical" >
 
                 <ListView
                     android:id="@+id/nodeListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-                </ListView>
+                    android:layout_width="fill_parent"
+                    android:layout_height="500dp"
+                    android:layout_gravity="top" >
 
-                
+                </ListView>
             </LinearLayout>
         </ScrollView>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" 
+            android:layout_weight="1">
 
             <Button
+                android:id="@+id/button7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button7" />
+                android:text="New Button" />
 
             <Button
+                android:id="@+id/button6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button6" />
+                android:text="New Button" />
         </LinearLayout>
-
     </LinearLayout>
+
 </RelativeLayout>

@@ -44,18 +44,14 @@ public class MainActivity extends Activity {
         //Creation of the lame test nodes
         // *********************************************************
 
+        
+        KeyPairGenerator keyGen;
         KeyPair decryptionPair;
         KeyPair encryptionPair;
 
         String[] thePMs = {"one", "two", "three", "four", "five"};
         try {
-            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-            //Keysize will normally be 2048, 1024 for quicker compiling at early stages
-            keyGen.initialize(1024);
-
-            Log.d(TAG, "Generating keys");
-            decryptionPair = keyGen.generateKeyPair();
-            encryptionPair = keyGen.generateKeyPair();
+            keyGen = KeyPairGenerator.getInstance("RSA");
 
         }catch(NoSuchAlgorithmException e){
             int fucked = 1;
@@ -72,12 +68,20 @@ public class MainActivity extends Activity {
         //Creation of the lame test nodes
         // *********************************************************
 
-        Node paul = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),"Hello World", thePMs);
-        Node pat = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),"Fuck da police", thePMs);
-        Node pablo = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),"Selling mad crack", thePMs);
-        nodeList.add(paul);
-        nodeList.add(pat);
-        nodeList.add(pablo);
+        //Keysize will normally be 2048, 1024 for quicker compiling at early stages
+        keyGen.initialize(512);
+
+        Log.d(TAG, "Generating keys");
+        decryptionPair = keyGen.generateKeyPair();
+        encryptionPair = keyGen.generateKeyPair();
+        
+        for(int i = 0; i < 100; i++){
+        	
+        	Node paul = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),"Hello World", thePMs);
+            nodeList.add(paul);
+        }
+        
+        
 
         
         Log.d(TAG, "Adding new view to centerNodes");
