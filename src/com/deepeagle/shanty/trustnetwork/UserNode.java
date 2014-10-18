@@ -12,6 +12,7 @@ import java.security.PublicKey;
 import android.util.Log;
 
 import com.deepeagle.shanty.utils.ShantyByteFormat;
+import com.deepeagle.shanty.utils.ShantyError;
 import com.deepeagle.shanty.utils.ShantyRand;
 
 /**
@@ -102,9 +103,13 @@ public class UserNode implements Serializable, Node{
 		return tag;
 	}
 
-	public boolean setAccouncment(String newAnnouncement){
-		//if newAnnouncement.length() 
-		return true;
+	public ShantyError setAccouncment(String newAnnouncement){
+		if(newAnnouncement.length() < 124){
+			return new ShantyError(1);
+		}
+		announcement = newAnnouncement;
+		return new ShantyError(0);
+		
 	}
 	
 	@Override

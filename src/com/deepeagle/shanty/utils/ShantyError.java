@@ -12,6 +12,8 @@ public class ShantyError {
 	public String getInfoString(){
 		String error;
 		switch (code) {
+		case 0:  error = "No error";
+				 break;
         case 1:  error = "Input text too long";
                  break;
         case 2:  error = "Input ontains invalid characters";
