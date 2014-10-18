@@ -2,12 +2,13 @@ package com.deepeagle.shanty.trustnetwork;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.security.PublicKey;
 
 import android.util.Log;
 
-import com.deepeagle.shanty.utils.shantyByteFormat;
+import com.deepeagle.shanty.utils.ShantyByteFormat;
 
 /**
  * 
@@ -17,12 +18,18 @@ import com.deepeagle.shanty.utils.shantyByteFormat;
  *
  */
 
-public class PlayerNode implements Node{
+public class PlayerNode implements Node, Serializable{
 
-	private final static String TAG = "Node";
-    private final PublicKey decrypyionKey;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
+	private final static String TAG = "PlayerNode";
+    private final PublicKey decryptionKey;
     private final PublicKey encryptionKey;
-    private final byte[] identity;
+
     
     private String announcement;
     private String tag;
@@ -31,17 +38,9 @@ public class PlayerNode implements Node{
     private float trust;
 
     public PlayerNode(PublicKey decKey, PublicKey encKey, String announ, String PMs[], String tag){
-        this.decrypyionKey = decKey;
+        this.decryptionKey = decKey;
         this.encryptionKey = encKey;
         
-        //Combines the two keys to produce one unique identifier
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
-        try {
-			outputStream.write(decrypyionKey.getEncoded());
-			outputStream.write(encryptionKey.getEncoded());
-		} catch (IOException e) {
-		}
-        this.identity = outputStream.toByteArray();
         this.announcement = announ;
         this.privateMessages = PMs;
         this.tag = tag;
@@ -63,8 +62,8 @@ public class PlayerNode implements Node{
         //int encKeyLength = Array.getLength(encryptionKey.getEncoded());
         //Log.d(TAG, "Decryption key length in bytes: " + decKeyLength);
         //Log.d(TAG, "Encryption key length in bytes: " + encKeyLength);
-        return shantyByteFormat.createUserID(decrypyionKey.getEncoded(), 50, 4) +
-        			shantyByteFormat.createUserID(encryptionKey.getEncoded(), 50, 4);
+        return ShantyByteFormat.createUserID(decryptionKey.getEncoded(), 50, 4) +
+        			ShantyByteFormat.createUserID(encryptionKey.getEncoded(), 50, 4);
     }
 
     public String getUserIDTagged(){
@@ -73,7 +72,7 @@ public class PlayerNode implements Node{
 
 	@Override
 	public PublicKey getPublicDecKey() {
-		return decrypyionKey;
+		return decryptionKey;
 	}
 
 	@Override
@@ -98,7 +97,14 @@ public class PlayerNode implements Node{
 
 	@Override
 	public byte[] getIdentity() {
-		return identity;
+		//Combines the two keys to produce one unique identifier
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
+        try {
+			outputStream.write(decryptionKey.getEncoded());
+			outputStream.write(encryptionKey.getEncoded());
+		} catch (IOException e) {
+		}
+        return outputStream.toByteArray();
 	}
     
     

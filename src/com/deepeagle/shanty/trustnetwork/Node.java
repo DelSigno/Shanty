@@ -1,10 +1,11 @@
 package com.deepeagle.shanty.trustnetwork;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.security.PublicKey;
 import java.util.HashMap;
 
-import com.deepeagle.shanty.utils.shantyByteFormat;
+import com.deepeagle.shanty.utils.ShantyByteFormat;
 
 import android.util.Log;
 
@@ -13,7 +14,7 @@ import android.util.Log;
  * This is the basic node interface, since both the PlayerNodes and UserNode are
  * essentially the same
  */
-public interface Node {
+public interface Node extends Serializable{
 	
 	//Saved Data
 	public PublicKey getPublicDecKey();

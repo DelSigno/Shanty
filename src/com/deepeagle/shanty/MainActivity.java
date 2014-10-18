@@ -17,7 +17,8 @@ import java.util.ArrayList;
 import com.deepeagle.shanty.R;
 
 import com.deepeagle.shanty.trustnetwork.Node;
-import com.deepeagle.shanty.utils.shantyRand;
+import com.deepeagle.shanty.trustnetwork.PlayerNode;
+import com.deepeagle.shanty.utils.ShantyRand;
 import com.deepeagle.shanty.views.NodeViewAdapter;
 
 
@@ -70,7 +71,7 @@ public class MainActivity extends Activity {
         //Creation of the lame test nodes
         // *********************************************************
 
-        //Keysize will normally be 2048, 1024 for quicker compiling at early stages
+        //Keysize will normally be 2048, 512 for quicker compiling at early stages
         keyGen.initialize(512);
 
         
@@ -78,7 +79,7 @@ public class MainActivity extends Activity {
         for(Integer i = 0; i < TESTNODES; i++){
             decryptionPair = keyGen.generateKeyPair();
             encryptionPair = keyGen.generateKeyPair();  	
-        	Node paul = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),shantyRand.getRandomString(128), thePMs, i.toString());
+        	Node paul = new PlayerNode(decryptionPair.getPublic(),encryptionPair.getPublic(),ShantyRand.getRandomString(128), thePMs, i.toString());
             nodeList.add(paul);
         }
         

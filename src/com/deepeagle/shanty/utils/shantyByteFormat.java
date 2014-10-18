@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import android.util.Log;
 
-public class shantyByteFormat {
+public class ShantyByteFormat {
 	private final static String TAG = "shantyByteFormat";
 	
 	//HASHMAP

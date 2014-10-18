@@ -3,7 +3,7 @@ package com.deepeagle.shanty.utils;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-public class shantyRand {
+public class ShantyRand {
 
 	
 	private static SecureRandom random = new SecureRandom();
