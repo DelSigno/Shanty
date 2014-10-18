@@ -26,6 +26,7 @@ public class NodeViewAdapter extends ArrayAdapter<Node>{
 
 	}
 
+
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent){
@@ -41,7 +42,7 @@ public class NodeViewAdapter extends ArrayAdapter<Node>{
         
 
         // 4. Set the text for textView 
-        userIDView.setText(nodeList.get(position).getUserID());
+        userIDView.setText(nodeList.get(position).getUserIDTagged());
         announcementView.setText(nodeList.get(position).getAnnouncement());
 
         // 5. return rowView

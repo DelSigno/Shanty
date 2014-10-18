@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import com.deepeagle.shanty.R;
 
 import com.deepeagle.shanty.trustgraph.Node;
+import com.deepeagle.shanty.utils.shantyRand;
 import com.deepeagle.shanty.views.NodeView;
 import com.deepeagle.shanty.views.NodeViewAdapter;
 
@@ -24,6 +25,8 @@ import com.deepeagle.shanty.views.NodeViewAdapter;
 public class MainActivity extends Activity {
 
     private final static String TAG = "MainActivity";
+    static int TESTNODES = 10;
+
     
     //*
     //*       Important variables
@@ -69,15 +72,14 @@ public class MainActivity extends Activity {
         // *********************************************************
 
         //Keysize will normally be 2048, 1024 for quicker compiling at early stages
-        keyGen.initialize(512);
+        keyGen.initialize(2048);
 
-        Log.d(TAG, "Generating keys");
-        decryptionPair = keyGen.generateKeyPair();
-        encryptionPair = keyGen.generateKeyPair();
         
-        for(int i = 0; i < 100; i++){
-        	
-        	Node paul = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),"Hello World", thePMs);
+    	Log.d(TAG, "Generating keys");
+        for(Integer i = 0; i < TESTNODES; i++){
+            decryptionPair = keyGen.generateKeyPair();
+            encryptionPair = keyGen.generateKeyPair();  	
+        	Node paul = new Node(decryptionPair.getPublic(),encryptionPair.getPublic(),shantyRand.getRandomString(128), thePMs, i.toString());
             nodeList.add(paul);
         }
         
@@ -91,15 +93,6 @@ public class MainActivity extends Activity {
         centerNodes.setAdapter(nodeViewAdapter);
         
         
-        
-        Log.d(TAG, "Finished adding new view to centerNodes");
-
-        int cC = centerNodes.getChildCount();
-        Log.d(TAG, "Listing children...");
-
-        for (int i = 0; i < cC; i++){
-            Log.d("MainActivity", "Child number " + i + "'s visibility is " + centerNodes.getChildAt(i).getVisibility());
-        }
     }
 
 
