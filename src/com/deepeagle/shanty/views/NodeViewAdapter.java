@@ -3,7 +3,7 @@ package com.deepeagle.shanty.views;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.deepeagle.shanty.trustgraph.Node;
+import com.deepeagle.shanty.trustnetwork.Node;
 
 import com.deepeagle.shanty.R;
 import android.content.Context;

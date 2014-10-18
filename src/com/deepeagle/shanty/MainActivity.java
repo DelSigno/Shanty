@@ -16,9 +16,8 @@ import java.util.ArrayList;
 
 import com.deepeagle.shanty.R;
 
-import com.deepeagle.shanty.trustgraph.Node;
+import com.deepeagle.shanty.trustnetwork.Node;
 import com.deepeagle.shanty.utils.shantyRand;
-import com.deepeagle.shanty.views.NodeView;
 import com.deepeagle.shanty.views.NodeViewAdapter;
 
 
@@ -72,7 +71,7 @@ public class MainActivity extends Activity {
         // *********************************************************
 
         //Keysize will normally be 2048, 1024 for quicker compiling at early stages
-        keyGen.initialize(2048);
+        keyGen.initialize(512);
 
         
     	Log.d(TAG, "Generating keys");
